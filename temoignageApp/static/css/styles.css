@@ -1,0 +1,15 @@
+
+:root{
+  --form-color : #E7E9EB ;
+}
+body {
+  color: #fff !important;
+} 
+
+.bg-dark{
+  background-color: RGB(31, 38, 59) !important;
+}
+
+.formStyle{
+  background-color: var(--form-color) !important;
+}

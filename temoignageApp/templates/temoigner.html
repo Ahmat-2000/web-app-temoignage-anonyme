@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Témoigner</title>
+{% endblock title %}
+
+
+{% block content %}
+<div class="container formStyle shadow-lg bg-dark rounded-3 border border-black py-3">
+    <h1 class="text-center text-secondary"> Remplissez le formulaire </h1>
+    <hr class="shadow rounded-2 mx-2 border border-black">
+    <form class="text-secondary py-2 px-2" id="form" method="post" action="{% url 'témoigner' %}">
+        {% csrf_token %}
+        <div class="form-floating my-3 ">
+          <input value="{{ form.agresseur.value|default:'' }}" type="text" class="form-control" id="agresseur" name="agresseur" required>
+          <label for="agresseur" class="form-label">Enter le nom complet de l'agresseur</label>
+          <div id="nameError" class="text-danger mt-1">{{form.agresseur.errors.0|default:''}}</div>
+        </div>
+        <div class="form-floating my-3">
+          <textarea style="min-height: 200px;" class="form-control" id="message" name="message" required>{{ form.message.value|default:'' }}</textarea>
+          <label for="message">Message</label>
+          <div id="messageError" class="text-danger mt-1">{{form.message.errors.0|default:''}}</div>
+        </div>
+        <button type="submit" class="mt-1 w-100 btn btn-primary">Envoyer</button>
+  </form> 
+</div>
+<script>
+
+  async function digestMessage(message) {
+    const msgUint8 = new TextEncoder().encode(message); // encode as (utf-8) Uint8Array
+    const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8); // hash the message
+    const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join(""); // convert bytes to hex string
+    return hashHex;
+  }
+
+  let id = (id) => document.getElementById(id)
+
+  let formTemoin = id("form") 
+
+  let submitForm = (e) => {
+    e.preventDefault();
+    let nomAgresseur = id("agresseur") 
+    let message = id("message") 
+    if (nomAgresseur.value.trim().length < 3){
+      id("nameError").innerHTML = "Au moins 3 caractères"
+    }
+    else if (message.value.trim().length < 30){
+      id("messageError").innerHTML = "Au moins 30 caractères"
+    }
+    else{
+      digestMessage(nomAgresseur.value.toLowerCase()).then((hash) => {
+        nomAgresseur.value = hash
+        formTemoin.submit();
+      })
+    }
+    
+  }
+
+  formTemoin.addEventListener("submit", submitForm);
+</script>
+{% endblock content %}

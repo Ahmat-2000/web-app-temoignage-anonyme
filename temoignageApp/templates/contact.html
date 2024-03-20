@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Contact</title>
+{% endblock title %}
+
+
+{% block content %}
+<div class="container formStyle shadow-lg bg-dark rounded-3 border border-black py-3">
+    <h1 class="text-center text-secondary"> Contactez-nous </h1>
+    <hr class="shadow rounded-2 mx-2 border border-black">
+      <form class="text-secondary py-2 px-2" method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <div class="form-floating my-3 ">
+          <input value="{{ form.sender.value|default:'' }}" type="text" class="form-control" id="sender" name="sender" required>
+          <label for="sender" class="form-label">Votre E-mail</label>
+          <div id="senderError" class="text-danger mt-1">{{form.sender.errors.0|default:''}}</div>
+        </div>
+        <div class="form-floating my-3 ">
+          <input value="{{ form.name.value|default:'' }}" type="text" class="form-control" id="sender" name="name" required>
+          <label for="name" class="form-label">Votre Nom</label>
+          <div id="nameError" class="text-danger mt-1">{{form.name.errors.0|default:''}}</div>
+        </div>
+        <div class="form-floating my-3">
+          <input value="{{ form.subject.value|default:'' }}" type="text" class="form-control" id="subject" name="subject" required>
+          <label for="subject" class="form-label" required>Objet de votre mail</label>
+          <div id="subjectError" class="text-danger mt-1">{{form.subject.errors.0|default:''}}</div>
+        </div>
+        <div class="form-floating my-3">
+          <textarea style="min-height: 200px;" class="form-control" id="message" name="message" required>{{ form.message.value|default:'' }}</textarea>
+          <label for="message">Message</label>
+          <div id="messageError" class="text-danger mt-1">{{form.message.errors.0|default:''}}</div>
+        </div>
+        <button type="submit" class="mt-1 w-100 btn btn-primary">Envoyer</button>
+  </form> 
+</div>
+
+{% endblock content %}

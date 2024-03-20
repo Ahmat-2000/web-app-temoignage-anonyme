@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="author" content="Ahmat Mahamat Ahmat">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}
+      <title>Témoignage</title>
+    {% endblock %}
+    <link rel="shortcut icon" href=" {% static 'images/pirate.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href=" {% static 'css/styles.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+  </head>
+  <body id="intro" class="text-white font-monospace bg-dark">
+
+    <header>
+      {% comment %} Navbar {% endcomment %}
+      {% include 'navBar.html' %}
+    <hr class="shadow rounded-2 mx-2 my-0 bg-secondary">
+    </header>
+
+    <main class="py-4 my-2" >
+      {% comment %} contenu de la plage {% endcomment %}
+
+      <div class="container mb-5" style="max-width: 650px;">
+        {% if messages %}
+        {% for message in messages %}
+          <div style="max-width: 650px;" class="container text-center alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      {% block content %}
+      {% comment %} code here {% endcomment %}
+      {% endblock content %}
+      <div>
+      <div class="modal fade text-dark" id="footerModal" tabindex="-1" aria-labelledby="footerModalLabel" aria-hidden="true">
+    		<div class="modal-dialog modal-dialog-centered">
+        		<div class="modal-content">
+            			<div class="modal-header">
+               				<h1 class="modal-title fs-5" id="footerModalLabel">Trouver de l'aide</h1>
+                			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            			</div>
+            			<div class="modal-body">
+            				<a target=”_blank” href="https://arretonslesviolences.gouv.fr/besoin-d-aide/harcelements">Site officiel du gouvernement à propos du harcèlement</a>
+                			<p>Numéro d'écoute pour les violences faites au femmes(du lundi au samedi|9h-19h): 3919</p>
+                			<p>Une écoute pour toutes les victimes(7j/7|9h-19h): 116 006</p>
+            			</div>
+        		</div>
+    		</div>
+	</div>
+    </main>
+
+    <footer class="fixed-bottom bg-dark mx-2 text-center">
+    <hr class="shadow rounded-2 mx-2 my-0 bg-secondary">
+      <!-- Copyright -->
+      <div class="my-3 p-2">
+        © 2024 Copyright:
+        <a class="text-reset fw-bold" href="#">Unicaen</a>
+        | 
+        <a type="button" class="text-reset fw-bold" data-bs-toggle="modal" data-bs-target="#footerModal">Liens utiles</a>
+      </div>
+	<!--copyright -->
+    </footer>
+   
+  </body>
+</html>

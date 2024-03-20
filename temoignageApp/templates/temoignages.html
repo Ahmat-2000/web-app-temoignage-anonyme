@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Témoignages</title>
+{% endblock title %}
+
+{% block content %}
+<div style="min-height:75vh" class="container formStyle shadow-lg rounded-3 border border-black py-3">
+
+  <h1 class="text-center text-dark">Vos témoignages</h1>
+  <hr class="shadow rounded-2 mx-2 border border-black">
+  {% if temoignage_data %}
+    <table class="table table-light table-hover">
+      <thead>
+        <tr>
+          <th>Messages</th>
+          <th>Agresseurs</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="">
+
+      {% for obj in temoignage_data %}
+        <tr>
+          <td>
+            <a type="button" class="btn btn text-primary" data-bs-toggle="modal" data-bs-target="#messageModal{{ obj.id }}">{{obj.message | slice:8 }}...</a>
+          </td>
+          <td>{{obj.agresseur | slice:5}}...</td>
+          <td>
+            <a type="button" class="btn text-dark btn-danger" href="{% url 'suppressionDeTemoignage' obj.id  %}">
+              {% comment %} <img src="{% static 'images/trash.svg' %}" alt="Supprimer">  {% endcomment %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+              </svg> 
+            </a>
+          </td>
+        </tr>
+        <div class="modal fade text-dark" id="messageModal{{ obj.id }}" tabindex="-1" aria-labelledby="messageModalLabel{{ obj.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="messageModalLabel{{ obj.id }}">Votre témoignage</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {{ obj.message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-dark m-5">Pas des témoignages</p>
+  {% endif %}
+</div>
+
+{% endblock content %}

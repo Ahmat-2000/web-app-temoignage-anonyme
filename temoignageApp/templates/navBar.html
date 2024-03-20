@@ -1,0 +1,36 @@
+<nav class="navbar mx-2 navbar-expand-md border border-dark navbar-dark shadow rounded-3">
+    <div class="container-fluid">
+        <span class="navbar-brand" >M1-Sécurité</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse justify-content-end navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav fw-bold">
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'index' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'contact' %}">Contactez-nous</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'témoigner' %}">Témoigner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'témoignages' %}">Témoignages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'deconnexion' %}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'connexion' %}">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'inscription' %}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

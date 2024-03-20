@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+      <title>Inscription</title>
+{% endblock title %}
+
+{% block content %}
+      {% if user.is_authenticated %}
+      <h1> Vous êtes déjà connecter</h1>
+      {% else %}
+      <div class="container-fluid formStyle shadow-lg bg-dark rounded-3 border border-black py-5 mt-5">
+            <h1 class="text-center text-secondary"> Créez votre compte </h1>
+            <hr class="shadow rounded-2 mx-2 border border-black">
+            <form class="text-secondary pt-4 px-2 " method="post" action="{% url 'inscription' %}">
+                  {% csrf_token %}
+                  {% comment %} <div class="my-3 form-floating ">
+                        <input value="{{ form.username.value|default:'' }}" type="text" class="form-control" id="username" placeholder="" name="username" required>
+                        <label for="username" class="form-label">Entez votre Pseudo</label>
+                        <div class="text-danger mt-2">{{form.username.errors.0|default:''}}</div>
+                  </div> {% endcomment %}
+                  <div class="my-3 form-floating ">
+                        <input value="{{ form.email.value|default:'' }}" type="text" class="form-control" id="email" placeholder="" name="email" required>
+                        <label for="email" class="form-label">Entez votre E-mail</label>
+                        <div class="text-danger mt-2">{{form.email.errors.0|default:''}}</div>
+                  </div>
+                  <div class="my-3 form-floating ">
+                        <input type="password" class="form-control" id="pwd1" placeholder="" name="password1" required>
+                        <label for="pwd1" class="form-label">Entez votre mot de passe</label>
+                        <div class="text-danger mt-2">{{form.password1.errors.value|default:''}}</div>
+                  </div>
+                  <div class="my-3 form-floating ">
+                        <input type="password" class="form-control" id="pwd2" placeholder="" name="password2" required>
+                        <label for="pwd2" class="form-label">Confirmez votre mot de passe</label>
+                        <div class="text-danger mt-2">{{form.password2.errors.0|default:''}}</div>
+                  </div>
+                  <button type="submit" class="d-block mb-2 mx-auto w-100 btn btn-primary" >Créer</button>
+            </form>
+      </div>
+      
+      {% endif %}
+{% endblock content %}

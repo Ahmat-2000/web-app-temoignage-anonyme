@@ -1,0 +1,21 @@
+
+<div style="margin: 0 50px;">
+    <p>Notre plateforme se propose d’être un outil sécurisé et anonyme pour 
+    la collecte de témoignages relatifs à des comportements harcelants ou 
+    violents survenus lors d’événements sociaux. Reconnaissant les dif- ficultés 
+    et les craintes associées à la dénonciation de telles situations, la plateforme
+    offre un moyen pour les victimes et les témoins de partager leurs expériences 
+    sans avoir à révéler ni leur identité. L’objectif principal de cette initiative 
+    est double. Premièrement, elle vise à fournir un espace sécurisé où les individus 
+    peuvent s’exprimer librement et anonymement, soulageant ainsi une partie du fardeau 
+    émotionnel et psychologique souvent associé au témoignage de tels incidents. 
+    Deuxièmement, grâce à l’utilisation de
+    </p>
+</div>
+<ul>
+    Voici les autres victimes que cette personne a agressé : 
+    
+    {% for victime in victimes %}
+        <li>{{victime}}</li>
+    {% endfor %}
+</ul>

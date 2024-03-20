@@ -1,0 +1,52 @@
+/* @media screen and (max-width: 500px){
+  .btn-outline-primary{
+    border: 0px none white;
+  }    
+} */
+html{
+  /* background-color: yellow; */
+  height: 100%;
+  --color-scheme: dark;
+  --bg-color: #424242;
+  --devider-color: #424242;
+  --form-control-border-color: rgba(255, 255, 255, 0.7);
+  --form-control-label-color: #bdbdbd;
+  --divider-blurry-color: hsl(0, 0%, 70%);
+  --sidenav-backdrop-opacity: 0.5;
+  --form-control-disabled-bg: #616161;
+  --box-shadow-color: #000;
+  --box-shadow-color-rgb: 0, 0, 0;
+  --stepper-mobile-bg: #3b3b3b;
+  --surface-color: #fff;
+  --surface-color-rgb: 255, 255, 255;
+  --surface-bg: #424242;
+  --surface-inverted-color: #fff;
+  --surface-inverted-color-rgb: 255, 255, 255;
+  --surface-inverted-bg: #757575;
+}
+/* 
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--mdb-body-font-family);
+  font-size: var(--mdb-body-font-size);
+  font-weight: var(--mdb-body-font-weight);
+  line-height: var(--mdb-body-line-height);
+  color: var(--mdb-body-color);
+  text-align: var(--mdb-body-text-align);
+  -webkit-text-size-adjust: 100%;
+} */
+body{
+  background-image: url("../images/bg-dark-sky.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.formStyle{
+  background-color: rgba(77, 77, 77, 0.7);
+  backdrop-filter: blur(10px);
+  max-width: 580px;
+  border: 1px rgba(223, 221, 221, 0.5) ridge;
+  border-radius: 12px;
+}
