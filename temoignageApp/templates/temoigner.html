@@ -13,7 +13,7 @@
         {% csrf_token %}
         <div class="form-floating my-3 ">
           <input value="{{ form.agresseur.value|default:'' }}" type="text" class="form-control" id="agresseur" name="agresseur" required>
-          <label for="agresseur" class="form-label">Enter le nom complet de l'agresseur</label>
+          <label for="agresseur" class="form-label">Entrer le nom complet de l'agresseur</label>
           <div id="nameError" class="text-danger mt-1">{{form.agresseur.errors.0|default:''}}</div>
         </div>
         <div class="form-floating my-3">
