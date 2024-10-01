@@ -27,9 +27,10 @@ SECRET_KEY = 'django-insecure-$j)0h!2yd=vg-5el1utb2gm%pytm_iv=ek&s8fkf7*a!xecna!
 
 DEBUG = True # mettre à false avant le deployement et collecter les fichiers static
 
-ALLOWED_HOSTS = ["*"] # il faut chager * par un domain en production
+# api/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app'] # il faut chager * par un domain en production
 
-
+WSGI_APPLICATION = 'api.wsgi.app'
 # Application definition
 
 INSTALLED_APPS = [
