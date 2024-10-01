@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# deploy to vercel
 pip install django
 
 pip install whitenoise 
